@@ -33,7 +33,7 @@
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav gap-3">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Realizar Venda <i>(PDV)</i></a>
+                        <a class="nav-link" href="{{ route('vendas.index') }}">Realizar Venda <i>(PDV)</i></a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Realizar Ordem de Serviço</a>

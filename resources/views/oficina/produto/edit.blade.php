@@ -1,35 +1,64 @@
-
 @extends('navbar')
 
 @section('content')
-    <h1>Edit Sale</h1>
-    <form method="POST" action="/admin/sales/{{ $sale->id }}">
-        @csrf
-        @method('PUT')
-        <div class="mb-3">
-            <label for="user_id" class="form-label">User</label>
-            <select id="user_id" name="user_id" class="form-select" required>
-                @foreach ($users as $user)
-                    <option value="{{ $user->id }}" {{ $user->id == $sale->user_id ? 'selected' : '' }}>
-                        {{ $user->name }}
-                    </option>
-                @endforeach
-            </select>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">Editar Produto: {{ $produto->nome }}</div>
+                <div class="card-body">
+
+                    @if ($errors->any())
+                    <div class="alert alert-danger mb-3">
+                        <strong>Ops! Algo deu errado.</strong>
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                    @endif
+
+                    <form method="POST" action="{{ route('produtos.update', $produto) }}">
+                        @csrf
+                        @method('PUT')
+
+                        <div class="mb-3">
+                            <label for="nome" class="form-label">Nome do Produto</label>
+                            <input type="text" id="nome" name="nome" class="form-control @error('nome') is-invalid @enderror" value="{{ old('nome', $produto->nome) }}" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="descricao" class="form-label">Descrição</label>
+                            <textarea id="descricao" name="descricao" class="form-control">{{ old('descricao', $produto->descricao) }}</textarea>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="categoria_produto_id" class="form-label">Categoria</label>
+                            <select id="categoria_produto_id" name="categoria_produto_id" class="form-select @error('categoria_produto_id') is-invalid @enderror" required>
+                                <option value="">Selecione uma Categoria</option>
+                                @foreach ($categorias as $categoria)
+                                <!--A lógica de 'selected' checa o old() ou o ID da categoria atual do produto-->
+                                <option value="{{ $categoria->id }}" {{ old('categoria_produto_id', $produto->categoria_produto_id) == $categoria->id ? 'selected' : '' }}>
+                                    {{ $categoria->nome }}
+                                </option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="valor" class="form-label">Valor (R$)</label>
+                            <input type="number" step="0.01" min="0" id="valor" name="valor" class="form-control @error('valor') is-invalid @enderror" value="{{ old('valor', $produto->valor) }}" required>
+                        </div>
+
+                        <div class="text-end">
+                            <a href="{{ route('produtos.index') }}" class="btn btn-secondary">Cancelar</a>
+                            <button type="submit" class="btn btn-primary">Salvar Alterações</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
-        <div class="mb-3">
-            <label for="product_id" class="form-label">Product</label>
-            <select id="product_id" name="product_id" class="form-select" required>
-                @foreach ($products as $product)
-                    <option value="{{ $product->id }}" {{ $product->id == $sale->product_id ? 'selected' : '' }}>
-                        {{ $product->name }} - ${{ $product->price }}
-                    </option>
-                @endforeach
-            </select>
-        </div>
-        <div class="mb-3">
-            <label for="quantity" class="form-label">Quantity</label>
-            <input type="number" id="quantity" name="quantity" class="form-control" min="1" value="{{ $sale->quantity }}" required>
-        </div>
-        <button type="submit" class="btn btn-primary">Update Sale</button>
-    </form>
+    </div>
+</div>
 @endsection

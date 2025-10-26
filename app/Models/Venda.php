@@ -7,11 +7,31 @@ use Illuminate\Database\Eloquent\Model;
 
 class Venda extends Model
 {
-    protected $fillable = ['data_venda', 'valor_total', 'cliente_id', 'usuario_id'];
     use HasFactory;
 
-    public function produtos()
+    protected $fillable = [
+        'data_venda',
+        'valor_total',
+        'cliente_id',
+        'usuario_id',
+        'produto_id',
+        'quantidade',
+        'status',
+        'observacoes'
+    ];
+
+    public function cliente()
     {
-        return $this->belongsToMany(Produto::class, 'venda_produto')->withPivot('quantidade', 'preco_unitario');
+        return $this->belongsTo(Cliente::class);
+    }
+
+    public function produto()
+    {
+        return $this->belongsTo(Produto::class);
+    }
+
+    public function usuario()
+    {
+        return $this->belongsTo(User::class);
     }
 }

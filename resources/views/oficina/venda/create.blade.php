@@ -23,9 +23,8 @@
                         @csrf
 
                         <div class="mb-3">
-                            <label for="cliente_id" class="form-label">Cliente (Opcional)</label>
+                            <label for="cliente_id" class="form-label">Cliente</label>
                             <select id="cliente_id" name="cliente_id" class="form-select">
-                                <option value="">Consumidor Final</option>
                                 @foreach ($clientes as $cliente)
                                 <option value="{{ $cliente->id }}" {{ old('cliente_id') == $cliente->id ? 'selected' : '' }}>
                                     {{ $cliente->nome }}

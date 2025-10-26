@@ -2,11 +2,13 @@
 
 use App\Http\Controllers\Oficina\CategoriaController;
 use App\Http\Controllers\Oficina\ServicoController;
-use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Oficina\ClienteController;
 use App\Http\Controllers\Oficina\ProdutoController;
 use App\Http\Controllers\Oficina\VeiculoController;
+use App\Http\Controllers\Oficina\VendaController;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -18,6 +20,16 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+
+// --- CRUD de Vendas ---
+Route::get('/oficina/vendas', [VendaController::class, 'index'])->name('vendas.index');
+Route::get('/oficina/vendas/create', [VendaController::class, 'create'])->name('vendas.create');
+Route::post('/oficina/vendas', [VendaController::class, 'store'])->name('vendas.store');
+Route::get('/oficina/vendas/{venda}', [VendaController::class, 'show'])->name('vendas.show');
+Route::get('/oficina/vendas/{venda}/edit', [VendaController::class, 'edit'])->name('vendas.edit');
+Route::put('/oficina/vendas/{venda}', [VendaController::class, 'update'])->name('vendas.update');
+Route::delete('/oficina/vendas/{venda}', [VendaController::class, 'destroy'])->name('vendas.destroy');
 
 
 // --- CRUD de Categorias ---
