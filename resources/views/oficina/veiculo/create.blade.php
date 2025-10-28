@@ -5,17 +5,6 @@
     <h1>Adicionar Novo Veículo</h1>
     <p>Adicionando veículo para o cliente: <strong>{{ $cliente->nome }}</strong></p>
 
-    @if ($errors->any())
-    <div class="alert alert-danger mb-3">
-        <strong>Ops! Algo deu errado.</strong>
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-    @endif
-
     <form method="POST" action="{{ route('veiculos.store') }}">
         @csrf
 

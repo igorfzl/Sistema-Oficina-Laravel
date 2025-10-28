@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Oficina\OrdemServicoController;
 use App\Http\Controllers\Oficina\CategoriaController;
 use App\Http\Controllers\Oficina\ServicoController;
 use App\Http\Controllers\Oficina\ClienteController;
@@ -7,6 +8,7 @@ use App\Http\Controllers\Oficina\ProdutoController;
 use App\Http\Controllers\Oficina\VeiculoController;
 use App\Http\Controllers\Oficina\VendaController;
 use App\Http\Controllers\ProfileController;
+use App\Models\OrdemServico;
 use Illuminate\Support\Facades\Route;
 
 
@@ -20,6 +22,17 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+
+// --- CRUD de ordemservicos ---
+Route::get('/oficina/ordemservicos', [OrdemServicoController::class, 'index'])->name('ordemservicos.index');
+Route::get('/oficina/ordemservicos/create', [OrdemServicoController::class, 'create'])->name('ordemservicos.create');
+Route::post('/oficina/ordemservicos', [OrdemServicoController::class, 'store'])->name('ordemservicos.store');
+Route::get('/oficina/ordemservicos/{ordemServico}', [OrdemServicoController::class, 'show'])->name('ordemservicos.show');
+Route::get('/oficina/ordemservicos/{ordemServico}/edit', [OrdemServicoController::class, 'edit'])->name('ordemservicos.edit');
+Route::put('/oficina/ordemservicos/{ordemServico}', [OrdemServicoController::class, 'update'])->name('ordemservicos.update');
+Route::delete('/oficina/ordemservicos/{ordemServico}', [OrdemServicoController::class, 'destroy'])->name('ordemservicos.destroy');
+
 
 
 // --- CRUD de Vendas ---

@@ -7,33 +7,41 @@ use Illuminate\Database\Eloquent\Model;
 
 class OrdemServico extends Model
 {
-    protected $fillable = ['data_abertura', 'data_fechamento', 'status', 'veiculo_id', 'cliente_id', 'produto_id', 'descricao_servico', 'valor_total'];
     use HasFactory;
 
-        public function veiculo()
+    protected $table = 'ordem_servicos';
+
+    protected $fillable = [
+        'cliente_id',
+        'veiculo_id',
+        'status',
+        'data_entrada',
+        'data_saida_prevista',
+        'descricao_problema',
+        'observacoes',
+        'valor_total',
+        'produto_id',
+        'produto_quantidade',
+        'servico_id'
+    ];
+
+    public function cliente()
+    {
+        return $this->belongsTo(Cliente::class);
+    }
+
+    public function veiculo()
     {
         return $this->belongsTo(Veiculo::class);
     }
 
-    /**
-     * Define o relacionamento de "Muitos para Muitos" com Produto.
-     * Uma Ordem de Serviço pode ter MUITOS Produtos.
-     */
-    public function produtos()
+    public function produto()
     {
-        return $this->belongsToMany(Produto::class, 'ordem_servico_produto')
-                    ->withPivot('quantidade', 'preco_unitario')
-                    ->withTimestamps();
+        return $this->belongsTo(Produto::class);
     }
 
-    /**
-     * Define o relacionamento de "Muitos para Muitos" com Servico.
-     * Uma Ordem de Serviço pode ter MUITOS Serviços.
-     */
-    public function servicos()
+    public function servico()
     {
-        return $this->belongsToMany(Servico::class, 'ordem_servico_servico')
-                    ->withPivot('valor_cobrado')
-                    ->withTimestamps();
+        return $this->belongsTo(Servico::class);
     }
 }

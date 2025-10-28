@@ -1,5 +1,5 @@
 @extends('navbar')
 
 @section('content')
-    <h1>Oficina Index Page</h1>
+<h1>Pagina inicial da Oficina</h1>
 @endsection

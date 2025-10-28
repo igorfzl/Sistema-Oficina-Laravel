@@ -33,10 +33,10 @@
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav gap-3">
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('vendas.index') }}">Realizar Venda <i>(PDV)</i></a>
+                        <a class="nav-link" href="{{ route('vendas.index') }}">Vendas <i>(PDV)</i></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Realizar Ordem de Serviço</a>
+                        <a class="nav-link" href="{{ route('ordemservicos.index') }}">Ordem de Serviço</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('servicos.index') }}">Gerenciar Serviços</a>

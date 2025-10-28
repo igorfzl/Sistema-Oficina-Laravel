@@ -24,48 +24,48 @@ class OrdemServicoController extends Controller
     public function create()
     {
         $clientes = Cliente::all();
-        $veiculordemservico = Veiculo::all();
-        $produtordemservico = Produto::all();
-        $servicordemservico = Servico::all();
+        $veiculos = Veiculo::all();
+        $produtos = Produto::all();
+        $servicos = Servico::all();
 
-        return view('oficina.ordemservico.create', compact('clientes', 'veiculordemservico', 'produtordemservico', 'servicordemservico'));
+        return view('oficina.ordemservico.create', compact('clientes', 'veiculos', 'produtos', 'servicos'));
     }
 
     public function store(Request $request)
     {
         $data = $request->validate([
             'cliente_id' => 'required|exists:clientes,id',
-            'veiculo_id' => 'required|exists:veiculordemservico,id',
+            'veiculo_id' => 'required|exists:veiculos,id',
             'data_entrada' => 'required|date',
             'data_saida_prevista' => 'nullable|date|after_or_equal:data_entrada',
             'status' => 'required|string',
             'descricao_problema' => 'nullable|string',
             'observacoes' => 'nullable|string',
-            'produto_id' => 'nullable|exists:produtordemservico,id',
+            'produto_id' => 'nullable|exists:produtos,id',
             'produto_quantidade' => 'nullable|integer|min:1|required_with:produto_id',
-            'servico_id' => 'nullable|exists:servicordemservico,id',
+            'servico_id' => 'nullable|exists:servicos,id',
         ]);
 
-        $valorTotalProdutordemservico = 0;
-        $valorTotalServicordemservico = 0;
+        $valorTotalProdutos = 0;
+        $valorTotalServicos = 0;
 
         if (!empty($data['produto_id'])) {
             $produto = Produto::find($data['produto_id']);
-            $valorTotalProdutordemservico = $produto->valor * $data['produto_quantidade'];
+            $valorTotalProdutos = $produto->valor * $data['produto_quantidade'];
         } else {
             $data['produto_quantidade'] = null;
         }
 
         if (!empty($data['servico_id'])) {
             $servico = Servico::find($data['servico_id']);
-            $valorTotalServicordemservico = $servico->valor;
+            $valorTotalServicos = $servico->valor;
         }
 
-        $data['valor_total'] = $valorTotalProdutordemservico + $valorTotalServicordemservico;
+        $data['valor_total'] = $valorTotalProdutos + $valorTotalServicos;
 
         OrdemServico::create($data);
 
-        return redirect()->route('ordemservico.index')->with('success', 'Ordem de Serviço criada com sucesso!');
+        return redirect()->route('ordemservicos.index')->with('success', 'Ordem de Serviço criada com sucesso!');
     }
 
     public function show(OrdemServico $ordemServico)
@@ -77,53 +77,53 @@ class OrdemServicoController extends Controller
     public function edit(OrdemServico $ordemServico)
     {
         $clientes = Cliente::all();
-        $veiculordemservico = Veiculo::all();
-        $produtordemservico = Produto::all();
-        $servicordemservico = Servico::all();
+        $veiculos = Veiculo::all();
+        $produtos = Produto::all();
+        $servicos = Servico::all();
 
-        return view('oficina.ordemservico.edit', compact('ordemServico', 'clientes', 'veiculordemservico', 'produtordemservico', 'servicordemservico'));
+        return view('oficina.ordemservico.edit', compact('ordemServico', 'clientes', 'veiculos', 'produtos', 'servicos'));
     }
 
     public function update(Request $request, OrdemServico $ordemServico)
     {
         $data = $request->validate([
             'cliente_id' => 'required|exists:clientes,id',
-            'veiculo_id' => 'required|exists:veiculordemservico,id',
+            'veiculo_id' => 'required|exists:veiculos,id',
             'data_entrada' => 'required|date',
             'data_saida_prevista' => 'nullable|date|after_or_equal:data_entrada',
             'status' => 'required|string',
             'descricao_problema' => 'nullable|string',
             'observacoes' => 'nullable|string',
-            'produto_id' => 'nullable|exists:produtordemservico,id',
+            'produto_id' => 'nullable|exists:produtos,id',
             'produto_quantidade' => 'nullable|integer|min:1|required_with:produto_id',
-            'servico_id' => 'nullable|exists:servicordemservico,id',
+            'servico_id' => 'nullable|exists:servicos,id',
         ]);
 
-        $valorTotalProdutordemservico = 0;
-        $valorTotalServicordemservico = 0;
+        $valorTotalProdutos = 0;
+        $valorTotalServicos = 0;
 
         if (!empty($data['produto_id'])) {
             $produto = Produto::find($data['produto_id']);
-            $valorTotalProdutordemservico = $produto->valor * $data['produto_quantidade'];
+            $valorTotalProdutos = $produto->valor * $data['produto_quantidade'];
         } else {
             $data['produto_quantidade'] = null;
         }
 
         if (!empty($data['servico_id'])) {
             $servico = Servico::find($data['servico_id']);
-            $valorTotalServicordemservico = $servico->valor;
+            $valorTotalServicos = $servico->valor;
         }
 
-        $data['valor_total'] = $valorTotalProdutordemservico + $valorTotalServicordemservico;
+        $data['valor_total'] = $valorTotalProdutos + $valorTotalServicos;
 
         $ordemServico->update($data);
 
-        return redirect()->route('ordemservico.index')->with('success', 'Ordem de Serviço atualizada com sucesso!');
+        return redirect()->route('ordemservicos.index')->with('success', 'Ordem de Serviço atualizada com sucesso!');
     }
 
     public function destroy(OrdemServico $ordemServico)
     {
         $ordemServico->delete();
-        return redirect()->route('ordemservico.index')->with('success', 'Ordem de Serviço excluída com sucesso!');
+        return redirect()->route('ordemservicos.index')->with('success', 'Ordem de Serviço excluída com sucesso!');
     }
 }

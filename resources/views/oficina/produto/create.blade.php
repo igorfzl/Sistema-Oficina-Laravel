@@ -8,17 +8,6 @@
                 <div class="card-header">Cadastrar Novo Produto</div>
                 <div class="card-body">
 
-                    @if ($errors->any())
-                    <div class="alert alert-danger mb-3">
-                        <strong>Ops! Algo deu errado.</strong>
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                    @endif
-
                     <form method="POST" action="{{ route('produtos.store') }}">
                         @csrf
 

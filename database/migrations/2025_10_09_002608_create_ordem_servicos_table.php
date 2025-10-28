@@ -6,37 +6,29 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
         Schema::create('ordem_servicos', function (Blueprint $table) {
             $table->id();
 
-            // Chaves estrangeiras principais
-            $table->unsignedBigInteger('cliente_id');
-            $table->unsignedBigInteger('veiculo_id');
+            $table->foreignId('cliente_id')->constrained('clientes');
+            $table->foreignId('veiculo_id')->constrained('veiculos');
 
-            // Status da OS (Ex: 'Pendente', 'Em Andamento', 'Finalizada')
+            $table->foreignId('produto_id')->nullable()->constrained('produtos');
+            $table->integer('produto_quantidade')->nullable();
+            $table->foreignId('servico_id')->nullable()->constrained('servicos');
+
             $table->string('status')->default('Pendente');
-
             $table->date('data_entrada');
             $table->date('data_saida_prevista')->nullable();
             $table->text('descricao_problema')->nullable();
             $table->text('observacoes')->nullable();
             $table->decimal('valor_total', 10, 2)->default(0);
 
-            $table->foreign('cliente_id')->references('id')->on('clientes');
-            $table->foreign('veiculo_id')->references('id')->on('veiculos');
-
-            $table->timestamps(); // Apenas uma chamada
+            $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('ordem_servicos');

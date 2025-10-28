@@ -10,15 +10,7 @@
             <a href="{{ route('servicos.index') }}" class="btn btn-secondary">Voltar para a Lista</a>
         </div>
     </div>
-    @if ($errors->any())
-    <div class="alert alert-danger mb-3">
-        <strong>Ops! Algo deu errado.</strong>
-        <ul>
-            @foreach ($errors->all() as $error)
-            <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
+
     @endif
     <form method="POST" action="{{ route('servicos.store') }}">
         @csrf

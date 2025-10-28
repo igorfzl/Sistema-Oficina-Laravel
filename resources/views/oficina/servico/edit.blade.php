@@ -3,12 +3,6 @@
 @section('content')
 <div class="container mt-4">
 
-    @if (session('success'))
-    <div class="alert alert-success">
-        {{ session('success') }}
-    </div>
-    @endif
-
     <div class="d-flex justify-content-between align-items-center mb-3">
         <h1>Editar Serviço</h1>
     </div>

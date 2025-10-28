@@ -3,19 +3,6 @@
 @section('content')
 <h1>Cadastrar Novo Cliente</h1>
 
-
-@if ($errors->any())
-<div class="alert alert-danger mb-3">
-    <strong>Ops! Algo deu errado.</strong>
-    <ul>
-        @foreach ($errors->all() as $error)
-        <li>{{ $error }}</li>
-        @endforeach
-    </ul>
-</div>
-@endif
-
-
 <form method="POST" action="{{ route('clientes.store') }}">
     @csrf
     <div class="mb-3">
