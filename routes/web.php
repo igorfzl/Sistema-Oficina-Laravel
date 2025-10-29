@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Oficina\RelatorioController;
 use App\Http\Controllers\Oficina\OrdemServicoController;
 use App\Http\Controllers\Oficina\CategoriaController;
 use App\Http\Controllers\Oficina\ServicoController;
@@ -22,6 +23,14 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+
+Route::get('/oficina/relatorios', [RelatorioController::class, 'index'])->name('relatorios.index');
+Route::get('/oficina/relatorios/faturamento', [RelatorioController::class, 'faturamento'])->name('relatorios.faturamento');
+Route::get('/oficina/relatorios/top-clientes', [RelatorioController::class, 'topClientes'])->name('relatorios.top-clientes');
+Route::get('/oficina/relatorios/top-produtos', [RelatorioController::class, 'topProdutos'])->name('relatorios.top-produtos');
+Route::get('/oficina/relatorios/top-servicos', [RelatorioController::class, 'topServicos'])->name('relatorios.top-servicos');
+Route::get('/oficina/relatorios/os-por-status', [RelatorioController::class, 'osPorStatus'])->name('relatorios.os-por-status');
 
 
 // --- CRUD de ordemservicos ---

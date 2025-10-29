@@ -59,9 +59,11 @@
                             Relatórios
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Vendas por período</a></li>
-                            <li><a class="dropdown-item" href="#">Serviços realizados</a></li>
-                            <li><a class="dropdown-item" href="#">Estoque de peças</a></li>
+                            <li><a class="dropdown-item" href="{{ route('relatorios.faturamento') }}">Faturamento</a></li>
+                            <li><a class="dropdown-item" href="{{ route('relatorios.top-clientes') }}">Clietes mais frequentes</a></li>
+                            <li><a class="dropdown-item" href="{{ route('relatorios.top-produtos') }}">Produtos mais vendidos</a></li>
+                            <li><a class="dropdown-item" href="{{ route('relatorios.top-servicos') }}">Serviços mais realizados</a></li>
+                            <li><a class="dropdown-item" href="{{ route('relatorios.os-por-status') }}">OS por Status</a></li>
                         </ul>
                     </li>
                 </ul>
