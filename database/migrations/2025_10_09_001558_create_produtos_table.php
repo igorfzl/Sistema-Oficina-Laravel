@@ -11,18 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        // Este arquivo deve criar a tabela 'produtos' (o catálogo de peças)
+
         Schema::create('produtos', function (Blueprint $table) {
             $table->id();
             $table->string('nome');
             $table->text('descricao')->nullable();
             $table->decimal('valor', 10, 2);
-
-            // Um produto PERTENCE A UMA Categoria
             $table->unsignedBigInteger('categoria_produto_id')->nullable();
             $table->foreign('categoria_produto_id')
                 ->references('id')
-                ->on('categoria_produtos'); // Garante que 'categoria_produtos' execute antes
+                ->on('categoria_produtos');
 
             $table->timestamps();
         });

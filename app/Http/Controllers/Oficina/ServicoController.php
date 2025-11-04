@@ -31,7 +31,7 @@ class ServicoController extends Controller
         Servico::create($request->all());
 
         return redirect()->route('servicos.index')
-                         ->with('success', 'Serviço cadastrado com sucesso.');
+            ->with('success', 'Serviço cadastrado com sucesso.');
     }
 
     public function show(Servico $servico)
@@ -55,7 +55,7 @@ class ServicoController extends Controller
         $servico->update($request->all());
 
         return redirect()->route('servicos.index')
-                         ->with('success', 'Serviço atualizado com sucesso.');
+            ->with('success', 'Serviço atualizado com sucesso.');
     }
 
     public function destroy(Servico $servico)
@@ -63,6 +63,6 @@ class ServicoController extends Controller
         $servico->delete();
 
         return redirect()->route('servicos.index')
-                         ->with('success', 'Serviço excluído com sucesso.');
+            ->with('success', 'Serviço excluído com sucesso.');
     }
 }

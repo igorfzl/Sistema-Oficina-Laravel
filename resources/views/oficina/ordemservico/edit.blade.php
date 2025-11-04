@@ -20,7 +20,7 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="mb-3">
-                            <label for="cliente_id" class="form-label">Cliente *</label>
+                            <label for="cliente_id" class="form-label">Cliente</label>
                             <select id="cliente_id" name="cliente_id" class="form-select" required>
                                 <option value="">Selecione um cliente</option>
                                 @foreach($clientes as $cliente)
@@ -32,7 +32,7 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="veiculo_id" class="form-label">Veículo *</label>
+                            <label for="veiculo_id" class="form-label">Veículo</label>
                             <select id="veiculo_id" name="veiculo_id" class="form-select" required>
                                 <option value="">Selecione um veículo</option>
                                 @foreach($veiculos as $veiculo)
@@ -44,7 +44,7 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="data_entrada" class="form-label">Data de Entrada *</label>
+                            <label for="data_entrada" class="form-label">Data de Entrada</label>
                             <input type="date" id="data_entrada" name="data_entrada" class="form-control" value="{{ old('data_entrada', $ordemServico->data_entrada) }}" required>
                         </div>
 
@@ -54,7 +54,7 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="status" class="form-label">Status *</label>
+                            <label for="status" class="form-label">Status</label>
                             <select id="status" name="status" class="form-select" required>
                                 <option value="Pendente" {{ old('status', $ordemServico->status) == 'Pendente' ? 'selected' : '' }}>Pendente</option>
                                 <option value="Em Andamento" {{ old('status', $ordemServico->status) == 'Em Andamento' ? 'selected' : '' }}>Em Andamento</option>

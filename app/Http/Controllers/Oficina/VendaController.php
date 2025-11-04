@@ -65,7 +65,6 @@ class VendaController extends Controller
 
         $produto = Produto::find($data['produto_id']);
 
-        // CORREÇÃO: Usar apenas 'valor' para ser consistente com o método store()
         $preco = $produto->valor;
         $data['valor_total'] = $data['quantidade'] * $preco;
 

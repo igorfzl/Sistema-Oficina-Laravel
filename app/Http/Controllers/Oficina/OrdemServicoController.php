@@ -17,7 +17,6 @@ class OrdemServicoController extends Controller
         $ordens = OrdemServico::with(['cliente', 'veiculo', 'produto', 'servico'])
             ->orderBy('data_entrada', 'desc')
             ->get();
-
         return view('oficina.ordemservico.index', compact('ordens'));
     }
 

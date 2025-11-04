@@ -10,7 +10,8 @@ use Illuminate\Validation\Rule;
 class ClienteController extends Controller
 {
 
-    public function home(){
+    public function home()
+    {
         return view('oficina.index');
     }
 
@@ -29,10 +30,9 @@ class ClienteController extends Controller
 
     public function store(Request $request)
     {
-        // 1. Valida os dados que vieram do formulário
         $dadosValidados = $request->validate([
             'nome' => 'required|string|max:255',
-            'email' => 'required|email|unique:clientes,email', // 'unique' impede emails duplicados
+            'email' => 'required|email|unique:clientes,email',
             'telefone' => 'nullable|string|max:20',
             'endereco' => 'nullable|string|max:255',
         ]);
@@ -40,8 +40,7 @@ class ClienteController extends Controller
         // 2. Cria o cliente no banco com os dados validados
         $cliente = Cliente::create($dadosValidados);
 
-        // 3. **A JOGADA**: Redireciona para a rota de EDIÇÃO (edit)
-        //    passando o ID do cliente que acabou de ser criado.
+        //Redireciona para a rota de edição com o id do cliente para add o carro
         return redirect()->route('clientes.edit', $cliente->id)
             ->with('success', 'Cliente cadastrado! Agora você pode adicionar os veículos.');
     }

@@ -11,7 +11,6 @@
         </div>
     </div>
 
-    @endif
     <form method="POST" action="{{ route('servicos.store') }}">
         @csrf
         <div class="card">

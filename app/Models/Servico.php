@@ -14,7 +14,6 @@ class Servico extends Model
     public function ordensServico()
     {
         return $this->belongsToMany(OrdemServico::class, 'ordem_servico_servico')
-            ->withPivot('valor_cobrado')
             ->withTimestamps();
     }
 }
