@@ -29,6 +29,8 @@ class VendaController extends Controller
             'cliente_id' => 'required|exists:clientes,id',
             'produto_id' => 'required|exists:produtos,id',
             'quantidade' => 'required|integer|min:1',
+            'forma_pagamento' => 'required|string|max:50',
+            'observacoes' => 'nullable|string',
         ]);
 
         $produto = Produto::find($data['produto_id']);
@@ -61,6 +63,8 @@ class VendaController extends Controller
             'cliente_id' => 'required|exists:clientes,id',
             'produto_id' => 'required|exists:produtos,id',
             'quantidade' => 'required|integer|min:1',
+            'forma_pagamento' => 'required|string|max:50',
+            'observacoes' => 'nullable|string'
         ]);
 
         $produto = Produto::find($data['produto_id']);

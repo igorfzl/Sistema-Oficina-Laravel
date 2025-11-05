@@ -40,6 +40,7 @@
                         <tr>
                             <th>Produto</th>
                             <th class="text-center">Quantidade</th>
+                            <th class="text-center">Forma de pagamento</th>
                             <th class="text-end">Preço Unitário</th>
                         </tr>
                     </thead>
@@ -47,6 +48,7 @@
                         <tr>
                             <td>{{ $venda->produto ? $venda->produto->nome : 'Produto não encontrado' }}</td>
                             <td class="text-center">{{ $venda->quantidade }}</td>
+                            <td class="text-center">{{ $venda->forma_pagamento }}</td>
                             <td class="text-end">R$ {{ $venda->produto ? number_format($venda->produto->valor, 2, ',', '.') : '0,00' }}</td>
                         </tr>
                     </tbody>

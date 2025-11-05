@@ -38,13 +38,29 @@
                             <label for="quantidade" class="form-label">Quantidade</label>
                             <input type="number" id="quantidade" name="quantidade" class="form-control" value="{{ old('quantidade', 1) }}" min="1" required>
                         </div>
-
-                        <button type="submit" class="btn btn-primary">Registrar Venda</button>
-                        <a href="{{ route('vendas.index') }}" class="btn btn-secondary">Cancelar</a>
-                    </form>
+                        <div class="mb-3">
+                            <label for="forma_pagamento" class="form-label">Forma de Pagamento</label>
+                            <select id="forma_pagamento" name="forma_pagamento" class="form-select">
+                                <option value="Dinheiro" {{ old('forma_pagamento', 'PIX') == 'Dinheiro' ? 'selected' : '' }}>Dinheiro</option>
+                                <option value="Cartão de Débito" {{ old('forma_pagamento', 'PIX') == 'Cartão de Débito' ? 'selected' : '' }}>Cartão de Débito</option>
+                                <option value="Cartão de Crédito" {{ old('forma_pagamento', 'PIX') == 'Cartão de Crédito' ? 'selected' : '' }}>Cartão de Crédito</option>
+                                <option value="PIX" {{ old('forma_pagamento', 'PIX') == 'PIX' ? 'selected' : '' }}>PIX</option>
+                            </select>
+                        </div>
                 </div>
+                <div class="mb-3">
+                    <label for="observacoes" class="form-label">Observações</label>
+                    <textarea id="observacoes" name="observacoes" class="form-control" rows="3">{{ old('observacoes') }}</textarea>
+                </div>
+                <hr>
+                <button type="submit" class="btn btn-primary">Registrar Venda</button>
+                <hr>
+                <a href="{{ route('vendas.index') }}" class="btn btn-secondary">Cancelar</a>
+                </form>
+                <hr>
             </div>
         </div>
     </div>
+</div>
 </div>
 @endsection

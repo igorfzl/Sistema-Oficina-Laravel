@@ -20,6 +20,7 @@
                         <th>Data</th>
                         <th>Cliente</th>
                         <th>Valor Total</th>
+                        <th>Forma de pagamento</th>
                         <th>Ações</th>
                     </tr>
                 </thead>
@@ -30,9 +31,11 @@
                         <td>{{ \Carbon\Carbon::parse($venda->data_venda)->format('d/m/Y H:i') }}</td>
                         <td>{{ $venda->cliente->nome ?? 'Cliente não informado' }}</td>
                         <td>R$ {{ number_format($venda->valor_total, 2, ',', '.') }}</td>
+                        <td>{{$venda->forma_pagamento}}</td>
                         <td>
                             <form action="{{ route('vendas.destroy', $venda) }}" method="POST" onsubmit="return confirm('Tem certeza que deseja excluir?');">
                                 <a href="{{ route('vendas.show', $venda) }}" class="btn btn-info btn-sm">Ver Recibo</a>
+                                <a href="{{ route('vendas.edit', $venda) }}" class="btn btn-warning btn-sm">Editar Venda</a>
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger btn-sm">Excluir</button>

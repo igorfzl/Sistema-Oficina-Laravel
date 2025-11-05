@@ -17,7 +17,8 @@ class Venda extends Model
         'produto_id',
         'quantidade',
         'status',
-        'observacoes'
+        'observacoes',
+        'forma_pagamento'
     ];
 
     public function cliente()
