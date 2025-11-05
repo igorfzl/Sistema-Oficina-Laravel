@@ -17,8 +17,8 @@ return new class extends Migration
             $table->id();
             $table->string('nome');
             $table->string('email')->unique();
-            $table->string('telefone')->nullable(); // Adicionei nullable
-            $table->string('endereco')->nullable(); // <-- ADICIONAR ESTA LINHA
+            $table->string('telefone')->nullable();
+            $table->string('endereco')->nullable();
             $table->timestamps();
         });
     }
