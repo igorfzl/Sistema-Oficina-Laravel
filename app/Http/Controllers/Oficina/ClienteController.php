@@ -17,8 +17,6 @@ class ClienteController extends Controller
 
     public function index()
     {
-        // Usamos 'with('veiculos')' para carregar os veículos de forma otimizada (Eager Loading)
-        // Evita que a view faça uma consulta no banco para cada cliente no loop
         $clientes = Cliente::with('veiculos')->latest()->get();
         return view('oficina.cliente.index', ['clientes' => $clientes]);
     }
@@ -37,10 +35,7 @@ class ClienteController extends Controller
             'endereco' => 'nullable|string|max:255',
         ]);
 
-        // 2. Cria o cliente no banco com os dados validados
         $cliente = Cliente::create($dadosValidados);
-
-        //Redireciona para a rota de edição com o id do cliente para add o carro
         return redirect()->route('clientes.edit', $cliente->id)
             ->with('success', 'Cliente cadastrado! Agora você pode adicionar os veículos.');
     }
@@ -70,7 +65,6 @@ class ClienteController extends Controller
         ]);
 
         $cliente->update($dadosValidados);
-
         return redirect()->route('clientes.edit', $cliente->id)
             ->with('success', 'Cliente atualizado com sucesso.');
     }

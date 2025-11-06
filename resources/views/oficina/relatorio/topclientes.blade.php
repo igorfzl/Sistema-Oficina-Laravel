@@ -26,7 +26,9 @@
                         <td>{{ $cliente->total_os }}</td>
                     </tr>
                     @empty
-                    <tr><td colspan="2">Nenhuma OS encontrada.</td></tr>
+                    <tr>
+                        <td colspan="2">Nenhuma OS encontrada.</td>
+                    </tr>
                     @endforelse
                 </tbody>
             </table>

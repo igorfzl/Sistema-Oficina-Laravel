@@ -26,7 +26,9 @@
                         <td>{{ $status->total }}</td>
                     </tr>
                     @empty
-                    <tr><td colspan="2">Nenhum status encontrado.</td></tr>
+                    <tr>
+                        <td colspan="2">Nenhum status encontrado.</td>
+                    </tr>
                     @endforelse
                 </tbody>
             </table>

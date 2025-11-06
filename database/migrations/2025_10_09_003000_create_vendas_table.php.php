@@ -6,9 +6,7 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Executa as migrações.
-     */
+
     public function up(): void
     {
         Schema::create('vendas', function (Blueprint $table) {
@@ -21,7 +19,7 @@ return new class extends Migration
             $table->text('observacoes')->nullable();
             $table->foreignId('produto_id')
                 ->constrained('produtos')
-                ->onDelete('cascade'); // Se um produto for apagado, apaga a venda associada
+                ->onDelete('cascade');
             $table->integer('quantidade');
             $table->foreign('cliente_id')
                 ->references('id')
@@ -32,9 +30,6 @@ return new class extends Migration
         });
     }
 
-    /**
-     * Reverte as migrações.
-     */
     public function down(): void
     {
         Schema::dropIfExists('vendas');

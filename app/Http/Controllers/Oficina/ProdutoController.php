@@ -32,7 +32,7 @@ class ProdutoController extends Controller
             'nome' => 'required|string|max:255',
             'descricao' => 'nullable|string',
             'valor' => 'required|numeric|min:0',
-            'categoria_produto_id' => 'required|exists:categoria_produtos,id' // Validação da categoria
+            'categoria_produto_id' => 'required|exists:categoria_produtos,id'
         ]);
 
         Produto::create($request->all());

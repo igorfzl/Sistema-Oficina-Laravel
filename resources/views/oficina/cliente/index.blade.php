@@ -1,4 +1,3 @@
-
 @extends('navbar')
 @section('content')
 <div class="container">

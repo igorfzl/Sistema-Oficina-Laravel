@@ -26,7 +26,9 @@
                         <td>{{ $servico->total_realizado }}</td>
                     </tr>
                     @empty
-                    <tr><td colspan="2">Nenhum serviço realizado em OS.</td></tr>
+                    <tr>
+                        <td colspan="2">Nenhum serviço realizado em OS.</td>
+                    </tr>
                     @endforelse
                 </tbody>
             </table>

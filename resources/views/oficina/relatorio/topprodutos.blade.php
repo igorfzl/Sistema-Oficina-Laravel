@@ -26,7 +26,9 @@
                         <td>{{ $produto->total_usado }}</td>
                     </tr>
                     @empty
-                    <tr><td colspan="2">Nenhum produto utilizado em OS.</td></tr>
+                    <tr>
+                        <td colspan="2">Nenhum produto utilizado em OS.</td>
+                    </tr>
                     @endforelse
                 </tbody>
             </table>

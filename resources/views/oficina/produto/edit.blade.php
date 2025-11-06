@@ -27,7 +27,6 @@
                             <select id="categoria_produto_id" name="categoria_produto_id" class="form-select @error('categoria_produto_id') is-invalid @enderror" required>
                                 <option value="">Selecione uma Categoria</option>
                                 @foreach ($categorias as $categoria)
-                                <!--A lógica de 'selected' checa o old() ou o ID da categoria atual do produto-->
                                 <option value="{{ $categoria->id }}" {{ old('categoria_produto_id', $produto->categoria_produto_id) == $categoria->id ? 'selected' : '' }}>
                                     {{ $categoria->nome }}
                                 </option>

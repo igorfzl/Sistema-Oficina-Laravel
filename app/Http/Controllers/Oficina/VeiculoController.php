@@ -38,10 +38,8 @@ class VeiculoController extends Controller
             ->with('success', 'Veículo adicionado com sucesso!');
     }
 
-    //Mostra o formulário para editar um veículo.
     public function edit(Veiculo $veiculo)
     {
-        // O Laravel encontra o $veiculo pelo ID
         return view('oficina.veiculo.edit', ['veiculo' => $veiculo]);
     }
 
